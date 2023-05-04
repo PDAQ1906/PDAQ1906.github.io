@@ -5,13 +5,13 @@
     <title>Canvas and Video </title>
     <style>
         #canvas1, #canvas2 {
-            width: 300px;
-            height: 300px;
+            width: 640px;
+            height: 360px;
             border: 1px solid black;
         }
         #video{
-            width: 300px;
-            height: 300px;
+            width: 640px;
+            height: 360px;
             border: 1px solid black;
         }
     </style>
@@ -33,38 +33,30 @@
         video.addEventListener('play', function() {
             setInterval(function() {
                 context1.drawImage(video, 0, 0, canvas1.width, canvas1.height);
-
              
                 var imgData = context1.getImageData(0, 0, canvas1.width, canvas1.height);
                 var src = cv.matFromImageData(imgData);
 
-
                 var grayscale = new cv.Mat();
                 cv.cvtColor(src, grayscale, cv.COLOR_RGBA2GRAY);
 
-                // Apply Sobel filter
                 var sobel = new cv.Mat();
-                var depth = cv.CV_8U; // Change this value to adjust the depth of the output image
-                var dx = 1; // Change these values to adjust the gradient direction
+                var depth = cv.CV_8U; 
+                var dx = 1; 
                 var dy = 0;
-                var ksize = 3; // Change this value to adjust the filter size
+                var k = 3; 
                 var scale = 1;
                 var delta = 0;
-                cv.Sobel(grayscale, sobel, depth, dx, dy, ksize, scale, delta);
+                cv.Sobel(grayscale, sobel, depth, dx, dy, k, scale, delta);
 
-                // Invert the colors
                 var inverted = new cv.Mat();
                 cv.bitwise_not(sobel, inverted);
 
-                // Draw the Sobel filter result to the second canvas
                 cv.imshow(canvas2, sobel);
-
     
-
             }, 20);
         }, false);
 
-        // Function called when OpenCV is ready
         function onOpenCvReady() {
             console.log('OpenCV is ready');
         }

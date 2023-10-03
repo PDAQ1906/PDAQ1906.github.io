@@ -34,3 +34,7 @@ $(document).on("change", "#image-input", function() {
 };
   reader.readAsDataURL(file);
 });
+// Function called when OpenCV is ready
+function onOpenCvReady() {
+  console.log('OpenCV is ready');
+}

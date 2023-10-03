@@ -1,2 +1,3 @@
-Để chạy Web app:
-Truy cập link https://pdaq1906.github.io/ 
+## Convert RGB Image To Grayscale Image
+
+Run the app in  https://pdaq1906.github.io/ 
